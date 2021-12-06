@@ -8,14 +8,52 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/demo.css">
+        <script>
+            function showGif(){
+                document.getElementById('gordonRamsay').style.display = "block";
+            }
+        </script>
     </head>
     <body>
-        <p>This is the home page</p>
-
-        <p><a href = "chat.html">Chat</a></p>
-        
-        <script src="js/client.js" async defer></script>
-     
-
+        <header><h1>Home page</h1>
+            <h2>A website about me!</h2>
+        </header>
+        <nav>
+            <ul>
+                <li><a class="active" href="home.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="chat.html">Come chat!</a></li>
+            </ul>
+        </nav>
+        <section>
+            <h2>What is this?</h2>
+            <p>This website (as the header suggests) is all about me! 
+                Read all about my hobbies and life in the <a href="about.html">About Me</a> page,
+                or even come and <a href="chat.html">chat!</a></p>
+        </section>
+        <section>
+            <h2>Introduction</h2>
+            <p>Hey! I am Alberto Rodriguez, a Computing Science student in my second year at Aberdeen University. 
+                I am half Spanish and half Italian but have lived in Aberdeen for 16 years. 
+                I love playing video games (and making them!). Hope to one day become a crazy cat lady.
+            </p>
+        </section>
+        <section>
+            <h2>Fun facts about myself</h2>
+            <ul>
+                <li>I used to play the flute</li>
+                <li>I speak to my cat (he talks back I swear)</li>
+                <li>I can (unfortunately) recite the entirety of Jake Paul's 
+                    "<a href="https://youtu.be/hSlb1ezRqfA">It's Everyday Bro</a>" 
+                    <!-- not embedding the song, this is a creative decision -->
+                    <strong>(Listen at your own risk)</strong></li>
+                <li>I've recently been watching too much Kitchen Nightmares and Hell's Kitchen 
+                    <input type="button" name="showGordon" value="Show me some Gordon Ramsay!" onclick="showGif()" /></li> 
+                    <div class="tenor-gif-embed" data-postid="5280412" data-share-method="host" data-aspect-ratio="1.78571" data-width="100%" id="gordonRamsay">
+                        <a href="https://tenor.com/view/idiot-sandwich-gordon-ramsay-what-are-you-gif-5280412">Idiot Sandwich Gordon Ramsay GIF</a>
+                        from <a href="https://tenor.com/search/idiot+sandwich-gifs">Idiot Sandwich GIFs</a></div> 
+                    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+            </ul>
+        </section>
     </body>
 </html>
