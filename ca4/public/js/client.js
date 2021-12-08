@@ -15,7 +15,6 @@ const newUserConnected = function (data) {
     userName = 'user-' +id;
     //console.log(typeof(userName));   
     
-
     //emit an event with the user id
     socket.emit("new user", userName);
     //call
@@ -28,7 +27,6 @@ const addToUsersBox = function (userName) {
     //to true, while also casting from an object to boolean
     if (!!document.querySelector(`.${userName}-userlist`)) {
         return;
-    
     }
     
     //setup the divs for displaying the connected users
@@ -52,6 +50,11 @@ socket.on("new user", function (data) {
       });
 });
 
+// when a new user joins, display message to current users
+socket.on("new user message", function(user){
+    addNewUserConnected(user);
+});
+
 //when a user leaves
 socket.on("user disconnected", function (userName) {
   document.querySelector(`.${userName}-userlist`).remove();
@@ -61,6 +64,19 @@ socket.on("user disconnected", function (userName) {
 const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
+
+// the message for a new user joining
+const addNewUserConnected = (user) => {
+  const sendMsg = `
+  <div class="incoming__message">
+    <div class="received__message">
+      <p>${user} just connected</p>
+    </div>
+  </div>`;
+
+  //is the message sent or received
+  messageBox.innerHTML += sendMsg;
+};
 
 const addNewMessage = ({ user, message }) => {
   const time = new Date();

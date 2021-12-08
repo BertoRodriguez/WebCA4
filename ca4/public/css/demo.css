@@ -1,19 +1,45 @@
 * {
     box-sizing: border-box;
+    padding:5px;
   }
   
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    background-color:#222629;
   }
-
+header{
+    text-align:center;
+}
+h1 {
+    color:white;
+}
+h2 {
+    color:#ce2029;
+}
+section {
+    background-color:#474B4F;
+}
+footer{
+    margin-top:10px;
+    background-color:#ADD8E6;
+}
+p, span{
+    color:#E5E4E2;
+}
+a:link{
+    color:#ffddf4;
+}
+a:visited{
+    color:#DF73FF;
+}
 /* below for horizontal navigation bar */
-nav ul {
+ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #474B4F;
 }
 
 nav li {
@@ -27,15 +53,33 @@ nav li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
-/* Change the link color to #111 (black) on hover */
+nav li a:visited, nav li a:link{
+    color:white;
+}
 nav li a:hover {
-  background-color: #111;
+  background-color: #AAABB8;
+}
+section ul > * {
+    color:#E5E4E2;
+    list-style-position:inside;
+}
+input {
+    margin: 10px;
 }
 .tenor-gif-embed{
     display:none;
     max-width:600px;
 }
+.float-section-right{
+    float:right;
+    text-align:right;
+}
+img{
+    width:33%;
+    margin-right:10px;
+    /*maybe add bottom margin */
+}
+
   /* Style the side navigation */
   .sidenav {
     height: 100%;
