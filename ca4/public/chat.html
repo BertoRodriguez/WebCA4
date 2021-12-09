@@ -7,14 +7,24 @@
     <link rel="stylesheet" href="/css/demo.css" />
   </head>
   <body>
+    <header>
+        <h1>Chat</h1>
+    </header>
+      <!-- overwrite padding on content class since we dont want any for the navbar -->
+    <nav class = "content" style = "padding:0px;">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a class = "active" href="chat.html">Come chat!</a></li>
+      </ul>
+    </nav>
     <div class="sidenav">
         <div class="inbox__people">
             <h4>Active users</h4>
           </div>
 
       </div>
-      
-      
+
       <br>
       <hr>
       <div class="content">
@@ -24,7 +34,11 @@
             
           
         </div>
-
+        
+          <!-- added div so we can display a user typing -->
+          <div class="typing_box">
+              
+          </div>
         <form class="message_form">
             <input type="text" class="message_form__input" placeholder="Type a message" />
             <button class="message_form__button" type="submit">

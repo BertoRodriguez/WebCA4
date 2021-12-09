@@ -7,6 +7,9 @@ const inboxPeople = document.querySelector(".inbox__people");
 
 let userName = "";
 let id;
+// value which stores if current user typing, which doesn't work :(
+var typing = false;
+var timeout = undefined;
 const newUserConnected = function (data) {
     
 
@@ -59,25 +62,42 @@ socket.on("new user message", function(user){
 socket.on("user disconnected", function (userName) {
   document.querySelector(`.${userName}-userlist`).remove();
 });
-
+//when a user leaves display message
+socket.on("user disconnect message", function(user){
+    showUserDisconnected(user);
+});
 
 const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
+const typingBox = document.querySelector(".typing_box");
 
 // the message for a new user joining
 const addNewUserConnected = (user) => {
+  const time = new Date();
+  const formattedTime = time.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
   const sendMsg = `
   <div class="incoming__message">
     <div class="received__message">
-      <p>${user} just connected</p>
+      <p>${user} connected at ${formattedTime}</p>
     </div>
   </div>`;
-
-  //is the message sent or received
+    
   messageBox.innerHTML += sendMsg;
 };
 
+const showUserDisconnected = (user) => {
+    const time = new Date();
+    const formattedTime = time.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
+    const disconnectMsg = `
+  <div class="incoming__message">
+    <div class="received__message">
+      <p>${user} disconnected at ${formattedTime}</p>
+    </div>
+  </div>`;
+  
+  messageBox.innerHTML += disconnectMsg;
+}
 const addNewMessage = ({ user, message }) => {
   const time = new Date();
   const formattedTime = time.toLocaleString("en-US", { hour: "numeric", minute: "numeric" });
@@ -106,6 +126,40 @@ const addNewMessage = ({ user, message }) => {
   //is the message sent or received
   messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
 };
+
+/* taken and adapted from https://rsrohansingh10.medium.com/add-typing-in-your-chat-application-using-socket-io-421c12d8859e
+   doesn't work
+$(document).ready(function(){
+      $(inputField).keypress((e)=>{
+        if(e.which!=13){
+          typing=true;
+          socket.emit('typing', {user:user, typing:true});
+          clearTimeout(timeout);
+          timeout=setTimeout(typingTimeout, 3000);
+        }else{
+          clearTimeout(timeout);
+          typingTimeout();
+          //sendMessage() function will be called once the user hits enter
+          //sendMessage()
+        }
+      })
+
+      //code explained later
+      socket.on('display', (data)=>{
+        if(data.typing==true){
+          $(typingBox).text(`${data.user} is typing...`);
+        }
+        else{
+          $(typingBox).text("");
+        }
+      });
+ });
+
+function typingTimeout(){
+    typing=false;
+    socket.emit('typing', {user:user, typing:false});
+}
+*/
 
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();

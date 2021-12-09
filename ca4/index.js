@@ -33,10 +33,23 @@ io.on("connection", function (socket) {
   socket.on("disconnect", function () {
       activeUsers.delete(socket.userId);
       io.emit("user disconnected", socket.userId);
+      socket.broadcast.emit("user disconnect message", socket.userId);
     });
 
     socket.on("chat message", function (data) {
       io.emit("chat message", data);
   });
+    
+    /* taken and adapted from https://rsrohansingh10.medium.com/add-typing-in-your-chat-application-using-socket-io-421c12d8859e
+       but doesn't work
+    socket.on("typing", (data)=>{
+      if(data.typing==true){
+         io.emit("display", data);
+      }
+      else{
+         io.emit("display", data);
+      }
+    });
+    */
 
 });
